@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona Główna</title>
+</head>
+<body>
+<h2>Strona Główna</h2>
+
+<ul>
+    <li th:each="user: ${users}">
+        <span th:text="|${user.firstName} ${user.lastName}|"></span>
+        <a th:href="|/edit?id=${user.id}|">(Edytuj)</a>
+
+    </li>
+
+</ul>
+
+<form action="/dodaj" method="post" th:object="${user}">
+
+    <input type="text" placeholder="Imię" th:field="*{firstName}"/>
+    <input type="text" placeholder="Nazwisko" th:field="*{lastName}"/>
+    <input type="hidden" th:field="*{id}"/>
+    <input type="submit" value="Dodaj"/>
+
+
+</form>
+</body>
+</html>
